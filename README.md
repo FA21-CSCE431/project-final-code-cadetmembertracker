@@ -1,58 +1,110 @@
 # README
 
-## Introduction ##
 
-The TAMU Cadet Member Tracker app is a webapp built with Ruby on Rails for the CADET Organization. This website acts as a hub from which users can view announcements, watch videos, attend meetings and visit organizations affiliated with the CADET Organization.
+## Introduction
+This is a web application created for the Texas A&M Cultural Awareness and Diversity Expansion Team to keep track of member participation.
 
-## Requirements ##
 
+## Requirements
 This code has been run and tested on:
-
-* Ruby - 3.0.2
-* Rails - 6.1.4.1
-* Ruby Gems - Listed in `Gemfile`
-* PostgreSQL - 13.3 
-
-
-## External Deps  ##
-
-* Docker - Download latest version at https://www.docker.com/products/docker-desktop
-* Heroku CLI - Download latest version at https://devcenter.heroku.com/articles/heroku-cli
-* Git - Downloat latest version at https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
-
-## Installation ##
-
-Download this code repository by using git:
-
- `git clone https://github.com/FA21-CSCE431/project-final-code-cadetmembertracker.git`
+- Ruby - 3.0.2
+- Rails - 6.1.4
+- Gems - listed in <code>Gemfile</code>
+- PostgreSQL - 13.3
+- Yarn - 1.22.4
 
 
-## Tests ##
+## External Dependencies
+- Docker - https://www.docker.com/products/docker-desktop
+- Heroku CLI - https://devcenter.heroku.com/articles/heroku-cli
+- Git - https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
 
-An RSpec test suite is available and can be ran using:
 
-  `rspec spec/`
+## Installation
 
-## Execute Code ##
+Download the required Docker container:
+<code>docker pull dmartinez05/ruby_rails_postgresql:latest</code>
 
-Run the following code in Powershell if using windows or the terminal using Linux/Mac
+Make a directory called cadetmembertracker move into it (your code from the github repo goes here):
+<code>mkdir cadetmembertracker; cd cadetmembertracker</code>
 
-  `cd cadet-member-tracker`
 
-  `docker run --rm -it --volume "$(pwd):/rails_app" -e DATABASE_USER=test_app -e DATABASE_PASSWORD=test_password -p 3000:3000 dmartinez05/ruby_rails_postgresql:latest`
+## Tests
 
-  `cd rails_app`
+Run the rspec test suite: <code>rspec ./spec</code>
 
-Install the app
+Run the rubocop tests: <code>rubocop</code>
 
-  `bundle install && rails webpacker:install && rails db:create && db:migrate`
+Run the brakeman tests: <code>brakeman</code>
 
-Run the app
-  `rails server --binding:0.0.0.0`
 
-The application can be seen using a browser and navigating to http://localhost:3000/
+## Execute Code
 
-## Support ##
+Run this code in the terminal for mac and in Powershell for windows.
 
-Admins can find support for different tabs in the form of instructions on the respective pages, as well as contacting the developers and George Hass.
-Users looking for help seek out assistance from the customer.
+For Mac:
+<code>docker run --rm -it --volume "$(pwd):/cadetmembertracker" -e DATABASE_USER=cadet_app -e DATABASE_PASSWORD=test_password -p 3000:3000 dmartinez05/ruby_rails_postgresql:latest</code>
+
+For Windows:
+<code>docker run --rm -it --volume "${PWD}:/cadetmembertracker" -e DATABASE_USER=cadet_app -e DATABASE_PASSWORD=test_password -p 3000:3000 dmartinez05/ruby_rails_postgresql:latest</code>
+
+
+In the Docker image, cd to the cadetmembertracker directory:
+<code>cd cadetmembertracker</code>
+
+Install all gems:
+<code>bundle install</code>
+
+Create the database:
+<code>rails db:create</code>
+
+Migrate the database:
+<code>rails db:migrate</code>
+
+Install webpacker
+<code>rails webpacker:install</code>
+
+Run the server:
+<code>rails server --binding=0.0.0.0</code>
+
+Check you browswer:
+http://127.0.0.1:3000
+
+
+## Environmental Variables/Files
+
+Refer to <code>/config/environments/development.rb</code>
+
+
+## Deployment
+
+Be sure all your code changes are pushed and updated to the test and main branch first.
+
+Now sign in to your heroku dashboard or create an account if needed
+
+Click the "New" button in the top right and select "Create new pipeline"
+
+Fill in the Pipeline name and owner then search for the github repo you are using.
+
+Click "Connect" and then "Create pipeline."
+
+Now that we have created a new pipline, under the Review App section Click "Enable Review Apps" and dont select any options
+
+Click “New app” in Review Apps. Choose the test branch. After you click “Create”, Heroku will start deploying immediately. Every time you make changes to the test branch, it triggers automatic deployment.
+
+To create an app for staging, click under the staging box "Create new app"
+
+Now click on the new staging app and click Deploy using the main branch for Automatic Deploys.
+
+Congrats you now have a deployment pipeling up and running that will update after any new push to the repo.
+
+
+## CI/CD
+
+Continuous Development is taken care of with our heroku deployment.
+
+Each time the repository is updated. The heroku app will automatically be updated.
+
+## User Support
+
+Manuals are available to the admin throught the application itself.
