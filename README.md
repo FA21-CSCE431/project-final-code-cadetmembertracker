@@ -11,7 +11,6 @@ This code has been run and tested on:
 - Rails - 6.1.4
 - Gems - listed in <code>Gemfile</code>
 - PostgreSQL - 13.3
-- Yarn - 1.22.4
 
 
 ## External Dependencies
