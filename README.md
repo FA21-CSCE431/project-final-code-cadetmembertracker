@@ -1,79 +1,56 @@
 # README
 
+## Introduction ##
 
-## Introduction
-This is a web application created for the Texas A&M Cultural Awareness and Diversity Expansion Team to keep track of member participation.
+The TAMU Cadet Member Tracker app is a webapp built with Ruby on Rails for the CADET Organization. This website acts as a hub from which users can view announcements, watch videos, attend meetings and visit organizations affiliated with the CADET Organization.
 
+## Requirements ##
 
-## Requirements
 This code has been run and tested on:
-- Ruby - 3.0.2
-- Rails - 6.1.4
-- Gems - listed in <code>Gemfile</code>
-- PostgreSQL - 13.3
+
+* Ruby - 3.0.2
+* Rails - 6.1.4.1
+* Ruby Gems - Listed in `Gemfile`
+* PostgreSQL - 13.3 
 
 
-## External Dependencies
-- Docker - https://www.docker.com/products/docker-desktop
-- Heroku CLI - https://devcenter.heroku.com/articles/heroku-cli
-- Git - https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
+## External Deps  ##
+
+* Docker - Download latest version at https://www.docker.com/products/docker-desktop
+* Heroku CLI - Download latest version at https://devcenter.heroku.com/articles/heroku-cli
+* Git - Downloat latest version at https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
+
+## Installation ##
+
+Download this code repository by using git:
+
+ `git clone https://github.com/FA21-CSCE431/project-final-code-cadetmembertracker.git`
 
 
-## Installation
+## Tests ##
 
-Download the required Docker container:
-<code>docker pull dmartinez05/ruby_rails_postgresql:latest</code>
+An RSpec test suite is available and can be ran using:
 
-Make a directory called cadetmembertracker move into it (your code from the github repo goes here):
-<code>mkdir cadetmembertracker; cd cadetmembertracker</code>
+  `rspec spec/`
 
+## Execute Code ##
 
-## Tests
+Run the following code in Powershell if using windows or the terminal using Linux/Mac
 
-Run the rspec test suite: <code>rspec ./spec</code>
+  `cd cadet-member-tracker`
 
-Run the rubocop tests: <code>rubocop</code>
+  `docker run --rm -it --volume "$(pwd):/rails_app" -e DATABASE_USER=test_app -e DATABASE_PASSWORD=test_password -p 3000:3000 dmartinez05/ruby_rails_postgresql:latest`
 
-Run the brakeman tests: <code>brakeman</code>
+  `cd rails_app`
 
+Install the app
 
-## Execute Code
+  `bundle install && rails webpacker:install && rails db:create && db:migrate`
 
-Run this code in the terminal for mac and in Powershell for windows.
+Run the app
+  `rails server --binding:0.0.0.0`
 
-For Mac:
-<code>docker run --rm -it --volume "$(pwd):/cadetmembertracker" -e DATABASE_USER=cadet_app -e DATABASE_PASSWORD=test_password -p 3000:3000 dmartinez05/ruby_rails_postgresql:latest</code>
-
-For Windows:
-<code>docker run --rm -it --volume "${PWD}:/cadetmembertracker" -e DATABASE_USER=cadet_app -e DATABASE_PASSWORD=test_password -p 3000:3000 dmartinez05/ruby_rails_postgresql:latest</code>
-
-
-In the Docker image, cd to the cadetmembertracker directory:
-<code>cd cadetmembertracker</code>
-
-Install all gems:
-<code>bundle install</code>
-
-Create the database:
-<code>rails db:create</code>
-
-Migrate the database:
-<code>rails db:migrate</code>
-
-Install webpacker
-<code>rails webpacker:install</code>
-
-Run the server:
-<code>rails server --binding=0.0.0.0</code>
-
-Check you browswer:
-http://127.0.0.1:3000
-
-
-## Environmental Variables/Files
-
-Refer to <code>/config/environments/development.rb</code>
-
+The application can be seen using a browser and navigating to http://localhost:3000/
 
 ## Deployment
 
@@ -97,13 +74,13 @@ Now click on the new staging app and click Deploy using the main branch for Auto
 
 Congrats you now have a deployment pipeling up and running that will update after any new push to the repo.
 
-
 ## CI/CD
 
 Continuous Development is taken care of with our heroku deployment.
 
 Each time the repository is updated. The heroku app will automatically be updated.
 
-## User Support
+## Support ##
 
-Manuals are available to the admin throught the application itself.
+Admins can find support for different tabs in the form of instructions on the respective pages, as well as contacting the developers and George Hass.
+Users looking for help seek out assistance from the customer.
